@@ -71,14 +71,16 @@ class _MyAppState extends State<MyApp> {
           child: FutureBuilder<Joke>(
             future: futureJoke,
             builder: (context, snapshot) {
+
               if (snapshot.hasData) {
-                return Text("A: " + snapshot.data!.setUp + "\n\nB: " + snapshot.data!.pun);
+                return Text("The best pun jokes you've heard! \n\n\n\n" + "A: " + snapshot.data!.setUp + "\n\nB: " + snapshot.data!.pun);
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
 
               // By default, show a loading spinner.
               return const CircularProgressIndicator();
+
             },
           )
         ),
