@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
             builder: (context, snapshot) {
 
               if (snapshot.hasData) {
-                return Text("The best pun jokes you've heard! \n\n\n\n" + "A: " + snapshot.data!.setUp + "\n\nB: " + snapshot.data!.pun);
+                return Text("The best pun jokes you've heard yet! \n\n\n\n" + "A: " + snapshot.data!.setUp + "\n\nB: " + snapshot.data!.pun);
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
