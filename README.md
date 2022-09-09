@@ -1,6 +1,6 @@
 # atividade2
 
-A new Flutter project.
+A Flutter project that calls a joke API.
 
 ## Getting Started
 
