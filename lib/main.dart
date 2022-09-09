@@ -53,7 +53,12 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     futureJoke = fetchJoke();
-    print(futureJoke);
+  }
+
+  void refreshPage(){
+    setState(() {
+      futureJoke = fetchJoke();
+    });
   }
 
   @override
@@ -68,20 +73,34 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Fetch Data Example'),
         ),
         body: Center(
-          child: FutureBuilder<Joke>(
-            future: futureJoke,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Text("A: " + snapshot.data!.setUp + "\n\nB: " + snapshot.data!.pun);
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[           
+              FutureBuilder<Joke>(
+                future: futureJoke,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text("A: " + snapshot.data!.setUp + "\n\nB: " + snapshot.data!.pun);
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                  }
 
-              // By default, show a loading spinner.
-              return const CircularProgressIndicator();
-            },
-          )
-        ),
+                  // By default, show a loading spinner.
+                  return const CircularProgressIndicator();
+                },
+              ),
+              Container(
+                margin: EdgeInsets.all(30.0),
+                child: FloatingActionButton(
+                  onPressed: refreshPage,
+                  child: Icon(
+                    Icons.refresh
+                  )                   
+                ),
+              ),
+            ]
+          ),
+        )
       ),
     );
   }
